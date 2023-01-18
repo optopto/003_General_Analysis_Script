@@ -14,7 +14,7 @@ names = [names; {text}];
 end
 [r index] = sort(r);
 nam2 = [];
-for idx = 1:length(r);
+for idx = 1:length(r)
     nam2 = [nam2; {names{index(idx)}}];
 end
 return

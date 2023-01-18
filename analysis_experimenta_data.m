@@ -50,7 +50,7 @@ os_final_folder = length(char(out_seed(end)));
 os_penultimate_folder = length(char(out_seed(end-1)));
 num_slach = 2;
 disc_char = os_final_folder + os_penultimate_folder + num_slach;
-ground_truth_folder_name = '\002 GroundTruth (GT)';
+ground_truth_folder_name = '\002_GroundTruth (GT)';
 
 dir_ground_truth_data = [select_folder_dir(1:end-disc_char) ground_truth_folder_name];
 
@@ -83,7 +83,9 @@ idx     = floor(rand*(size(Yp0,1)-1)+1); % random sample from the experiment
 r_pos   = 11;   % r_0 position (see the r0 value)
 
 %%%%% PLOT %%%%%%%%%%%%
-figure(1)
+fig = figure(1);
+letter_size = 12;
+fig.Position =  [148 114 1667 811];
 diag_DP =diag(iMat0'*iMat0);diag_DE =diag(iMat1'*iMat1);
 tiledlayout(2,3)
 nexttile
@@ -91,18 +93,18 @@ plot(diag_DP,'LineWidth',2), hold on, plot(diag_DE,'LineWidth',2)
 set(gca,'LineWidth',1, 'Fontsize', 16)
 xlim([1 length(diag_DP)])
 legend('IMat Diagonal DP','IMat Diagonal DE')
-;hold off
+hold off
 
 nexttile([2 2]), errorbar(r0*100,mean(err0(:,:)),std(err0(:,:)),'b','LineWidth',2);hold on
 errorbar(r0*100,mean(err1(:,:)),std(err1(:,:)),'r','LineWidth',2);
-set(gca,'LineWidth',1, 'Fontsize', 16)
-title(['Error'],'interpreter','latex','FontSize',16);ylabel(['RMSE [rad]'],'interpreter','latex','FontSize',16);xlabel(['$ r_0  [cm] $'],'interpreter','latex','FontSize',16)
+set(gca,'LineWidth',1, 'Fontsize', letter_size)
+title(['Error'],'interpreter','latex','FontSize',letter_size);ylabel(['RMSE [rad]'],'interpreter','latex','FontSize',16);xlabel(['$ r_0  [cm] $'],'interpreter','latex','FontSize',letter_size)
 legend('DP RMSE', 'DE RMSE')
 
 nexttile, plot(x,Ygt(idx,x,r_pos),'k','LineWidth',2), hold on, plot(x,Yp0(idx,x,r_pos),'b','LineWidth',2), hold on, plot(x,Yp1(idx,x,r_pos),'r','LineWidth',2)
-title(['Estimation for $r_0$ ' num2str(r0(r_pos)*100) ' [cm]'],'interpreter','latex','FontSize',16);ylabel(['Amplitude [rad]'],'interpreter','latex','FontSize',16);xlabel(['$\#$ Zernike'],'interpreter','latex','FontSize',16)
+title(['Estimation for $r_0$ ' num2str(r0(r_pos)*100) ' [cm]'],'interpreter','latex','FontSize',letter_size);ylabel(['Amplitude [rad]'],'interpreter','latex','FontSize',letter_size);xlabel(['$\#$ Zernike'],'interpreter','latex','FontSize',letter_size)
 legend('GT', 'DP Zernike Estimation','DE Zernike Estimation')
-set(gca,'LineWidth',1, 'Fontsize', 18)
+set(gca,'LineWidth',1, 'Fontsize', letter_size)
 xlim([1 length(Ygt)])
 
 
