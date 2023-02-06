@@ -10,7 +10,13 @@ addpath(filepath_S_F);
 %%%%      SELECT FOLDER TO ANALYZE         %%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-select_folder_dir= uigetdir('C:\','Select Experiment Folder to be Analyzed');
+if ~exist('select_folder_dir')
+    select_folder_dir = 'C:\';
+elseif select_folder_dir == 0
+    select_folder_dir = 'C:\';
+end
+
+select_folder_dir= uigetdir(select_folder_dir,'Select Experiment Folder to be Analyzed');
 
 % get the folder contents
 d = dir(select_folder_dir);
@@ -79,11 +85,11 @@ display('Generating results: estimations and errors')
 
 %% display data
 x       = 1:size(Ygt,2);   % Zernike range
-idx     = floor(rand*(size(Yp0,1)-1)+1); % random sample from the experiment
+idx     = 27 %floor(rand*(size(Yp0,1)-1)+1); % random sample from the experiment
 r_pos   = 11;   % r_0 position (see the r0 value)
 
 %%%%% PLOT %%%%%%%%%%%%
-fig = figure(1);
+fig = figure(3);
 letter_size = 12;
 fig.Position =  [148 114 1667 811];
 diag_DP =diag(iMat0'*iMat0);diag_DE =diag(iMat1'*iMat1);

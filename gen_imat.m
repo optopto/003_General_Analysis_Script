@@ -9,6 +9,6 @@ for idx = 1:size(sp,2)
     sp2(:,idx) = var_sp(pup)/sum(var_sp(pup));
     sm2(:,idx) = var_sm(pup)/sum(var_sm(pup));
 end
-    imat = 0.5*(sm2-sp2)/0.1;
+    imat = 0.5*(sm2-sp2)/1;
     p2z = pinv(imat);
 end

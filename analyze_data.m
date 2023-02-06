@@ -11,7 +11,7 @@ for idx = 1:length(names)
     ran = size(Y_est);
     rx = 1:ran(1);
     ry = 1:ran(2);
-    Y_z = Y_z*0.2;
+    Y_z = Y_z*0.1;
     Yz(:,:,idx) = Y_z(rx,ry);
     error(:,idx) = RMSE(yest(rx,ry),Y_z(rx,ry));
 end
